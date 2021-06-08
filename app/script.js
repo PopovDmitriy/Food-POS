@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     navBarTabHandler();
     logoHandler();
 
+    /**
+     * Logo handler
+     */
     function logoHandler () {
         const logo = nav.querySelector(".logo");
         const activeTab = nav.querySelector("button[data-action='Home']").parentNode;
@@ -16,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     /**
-     * Handler for hav bar
+     * Handler for hav bar tabs
      */
     function navBarTabHandler () {
         const aNavListBtn = nav.querySelectorAll(".nav__item button");
