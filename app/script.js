@@ -3,28 +3,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainContent = document.querySelector(".js-main");
 
     renderMainContent();
-    navBarTavHandler();
+    navBarTabHandler();
+    logoHandler();
+
+    function logoHandler () {
+        const logo = nav.querySelector(".logo");
+        const activeTab = nav.querySelector("button[data-action='Home']").parentNode;
+        logo.addEventListener("click", () => {
+            changeTabState(activeTab);
+            renderMainContent();
+        });
+    };
 
     /**
      * Handler for hav bar
      */
-    function navBarTavHandler () {
-        nav.addEventListener("click", (e) => {
-            let activeTab = nav.querySelector(".is__active");
-    
-            if (e.target && (e.target.parentNode.nodeName == "BUTTON" ||e.target.parentNode.parentNode.nodeName == "BUTTON")) {
-                activeTab = e.target.parentNode;
-                const tabAction = activeTab.dataset.action;
+    function navBarTabHandler () {
+        const aNavListBtn = nav.querySelectorAll(".nav__item button");
 
-                changeTabState(activeTab);
-                renderMainContent(tabAction);
-            }
-    
-            if (e.target && (e.target.classList == "logo" || e.target.parentNode.classList == "logo" || e.target.parentNode.parentNode.classList == "logo")) {
-                activeTab = nav.querySelector("button[data-action='Home']");
-                changeTabState(activeTab);
-                renderMainContent();
-            }
+        aNavListBtn.forEach(item => {
+            item.addEventListener("click", () => {
+                changeTabState(item.parentNode);
+                renderMainContent(item.dataset.action);
+            });
         });
     };
 
@@ -39,11 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
             item.classList.remove("is__active");
         });
 
-        activeTab.parentNode.classList.add("is__active");
+        activeTab.classList.add("is__active");
     };
 
     function renderHomePage () {
-        return renderHeader();
+        return `<div class="main__container">${renderHeader()}</div>`;
     }
 
     function renderHeader () {
@@ -84,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
         switch(tabAction) {
             case 'Home': mainContent.innerHTML = renderHomePage();
                 break;
-            default: mainContent.innerHTML = tabAction;
+            default: mainContent.innerHTML = `<div class="main__container">${tabAction}</div>`;
                 break;
         }
     };
