@@ -154,11 +154,11 @@ main {
 .search-input {
     position: absolute;
     top: 10px;
-    left: 40px;
+    left: 38px;
     font-size: 14px;
     background: none;
     color: #fff;
-    width: 176px;
+    width: 195px;
     height: 20px;
     border: none;
     appearance: none;
@@ -174,25 +174,6 @@ main {
     background: none;
     outline: none!important;
     cursor: pointer;
-}
-
-@media screen and (max-width: 600px) {
-    .header__searchfield {
-        width: 40px;
-        overflow: hidden;
-    }
-
-    .search-button {
-        width: auto;
-        height: auto;
-            left: 0;
-            top: 0;
-        padding: 10px;
-    }
-
-    .header__searchfield--open {
-        width: 220px;
-    }
 }
 
 @keyframes mainContentLoadAnime {
